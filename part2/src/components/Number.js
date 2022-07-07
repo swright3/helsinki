@@ -1,5 +1,5 @@
 import React from 'react'
 
-const Number = ({name}) => <div>{name}</div>
+const Number = ({name,number}) => <div>{name} {number}</div>
 
 export default Number
