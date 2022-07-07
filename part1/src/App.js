@@ -5,6 +5,7 @@ const Button = ({text,onClick}) => <button onClick={onClick}>{text}</button>
 const Stat = ({text,value}) => <div>{text} {value}</div>
 
 const Statistics = ({good,bad,neutral}) => {
+  if (good+bad+neutral === 0) {return <div>No feedback given</div>}
   return (
     <>
       <Stat text="good" value={good} />
