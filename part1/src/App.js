@@ -18,12 +18,22 @@ const Statistics = ({good,bad,neutral}) => {
   )
 }
 
+const Votes = ({votes, selected, handleVote}) => {
+  return (
+    <>
+      <div>Has {votes[selected]} votes</div>
+      <Button text="Vote!" onClick={() => handleVote(selected)} />
+    </>
+  )
+}
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
   const [selected, setSelected] = useState("Press button to be enlightened")
+  const [votes, setVotes] = useState([0,0,0,0,0])
 
   const handleGoodClick = () => setGood(good+1)
 
@@ -39,7 +49,13 @@ const App = () => {
     "Well, well, well. How the turntables"
   ]
 
-  const newAnecdote = () => setSelected(anecdotes[Math.floor(Math.random()*anecdotes.length)])
+  const newAnecdote = () => setSelected(Math.floor(Math.random()*anecdotes.length))
+
+  const handleVote = (x) => {
+    let newVotes = [...votes]
+    newVotes[x] += 1
+    setVotes(newVotes)
+  }
 
   return (
     <div>
@@ -50,7 +66,8 @@ const App = () => {
       <h1>Statistics</h1>
       <Statistics good={good} bad={bad} neutral={neutral} />
       <Button text="Beep boop" onClick={newAnecdote} />
-      <div>{selected}</div>
+      <div>{anecdotes[selected]}</div>
+      <Votes votes={votes} selected={selected} handleVote={handleVote}/>
     </div>
   )
 }
