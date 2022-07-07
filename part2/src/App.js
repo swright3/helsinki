@@ -27,8 +27,6 @@ const App = (props) => {
     ? notes
     : notes.filter(note => note.important === true)
 
-  console.log(notesToShow)
-
   return (
     <div>
       <h1>Notes</h1>
@@ -44,6 +42,9 @@ const App = (props) => {
           />
           <button type="submit">save</button>
       </form>
+      <button onClick={() => setShowAll(!showAll)}>
+        show/hide favourites
+      </button>
     </div>
   )
 }
