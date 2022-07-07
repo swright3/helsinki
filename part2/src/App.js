@@ -11,7 +11,9 @@ const App = () => {
 
   const addName = (event) => {
     event.preventDefault()
-    setPersons(persons.concat({name: newName}))
+    persons.some((person) => person.name === newName)
+    ? window.alert(`${newName} is already in your contacts`)
+    : setPersons(persons.concat({name: newName}))
     setNewName('')
   }
 
